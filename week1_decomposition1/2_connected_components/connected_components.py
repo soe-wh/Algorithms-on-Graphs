@@ -5,8 +5,23 @@ import sys
 
 def number_of_components(adj):
     result = 0
-    #write your code here
+    # write your code here
+    visited = [0] * len(adj)
+    for i in xrange(len(adj)):
+        if not visited[i]:
+            explore(adj, i, visited)
+            result += 1
     return result
+
+
+def explore(adj, x, visited):
+    visited[x] = 1
+    for i in xrange(len(adj[x])):
+        if not visited[adj[x][i]]:
+            explore(adj, adj[x][i], visited)
+
+    print(number_of_components(adj))
+
 
 if __name__ == '__main__':
     input = sys.stdin.read()

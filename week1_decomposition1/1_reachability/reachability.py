@@ -5,7 +5,18 @@ import sys
 
 def reach(adj, x, y):
     # write your code here
-    return 0
+    visited = [0] * len(adj)
+    return explore(adj, x, y, visited)
+
+
+def explore(adj, x, y, visited):
+    if x == y:
+        return 1
+    visited[x] = 1
+    for i in range(len(adj[x])):
+        if not visited[adj[x][i]]:
+            if explore(adj, adj[x][i], y, visited):
+                return 1
 
 
 if __name__ == '__main__':
